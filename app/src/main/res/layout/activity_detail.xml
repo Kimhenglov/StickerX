@@ -10,7 +10,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230sdp"
-        android:backgroundTint="@color/blue_white">
+        android:backgroundTint="@color/green_yellow">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -75,6 +75,7 @@
                     app:layout_constraintEnd_toEndOf="parent">
 
                     <TextView
+                        android:id="@+id/tv_categories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Catagory : Anime"
@@ -86,6 +87,7 @@
                         android:layout_weight="1"/>
 
                     <TextView
+                        android:id="@+id/tv_area"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Location : PhnomPenh"
@@ -99,6 +101,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_instruction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +112,17 @@
                     android:textColor="@color/black"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_instruction_st"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello"
+                    android:textSize="@dimen/_20sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_instruction"
+                    app:layout_constraintStart_toStartOf="@+id/tv_instruction"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColor="@color/black"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
