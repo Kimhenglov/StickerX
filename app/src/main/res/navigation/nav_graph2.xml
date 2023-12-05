@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.example.myapplication.fragment.HomeFragment2"
+        android:name="com.example.myapplication.fragment.HomeFragment"
         android:label="fragment_home2"
         tools:layout="@layout/fragment_home2" />
 
     <fragment
         android:id="@+id/favoriteFragment2"
-        android:name="com.example.myapplication.fragment.FavoriteFragment2"
+        android:name="com.example.myapplication.fragment.FavoriteFragment"
         android:label="fragment_favorite2"
         tools:layout="@layout/fragment_favorite2" />
 
     <fragment
         android:id="@+id/categoryFragment2"
-        android:name="com.example.myapplication.fragment.CategoryFragment2"
+        android:name="com.example.myapplication.fragment.CategoryFragment"
         android:label="fragment_category2"
         tools:layout="@layout/fragment_category2" />
 

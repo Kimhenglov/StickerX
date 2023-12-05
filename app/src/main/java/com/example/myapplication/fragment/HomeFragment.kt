@@ -1,5 +1,6 @@
 package com.example.myapplication.fragment
 
+import MostPopularAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +9,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapplication.activity.DetailActivity
-import com.example.myapplication.api.FoodSticker
+import com.example.myapplication.activity.MainActivity
 import com.example.myapplication.api.Meal
 import com.example.myapplication.databinding.FragmentHome2Binding
+import com.example.myapplication.pojo.CategoryMeals
 import com.example.myapplication.videoModel.HomeViewModel
 //import com.example.myapplication.retrofit.RetrofitInstance
 
 
-class HomeFragment2 : Fragment() {
+class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHome2Binding
     private lateinit var homeMvvm: HomeViewModel
     private lateinit var ramdomSticker: Meal
+    private lateinit var popularItemsAdapter: MostPopularAdapter
 
 
     companion object{
@@ -35,6 +39,8 @@ class HomeFragment2 : Fragment() {
         super.onCreate(savedInstanceState)
 
         homeMvvm = ViewModelProvider(this)[HomeViewModel::class.java]
+
+        popularItemsAdapter = MostPopularAdapter()
 
     }
 
@@ -51,10 +57,52 @@ class HomeFragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        preparePopularItemsRecyclerView()
+
         homeMvvm.getRandomSticker()
         observerRandomSticker()
 
         onRamdomStickerClick()
+
+        homeMvvm.getPopularItems()
+        observePopulartionItemsLiveData()
+
+        onPopularItemsClick()
+    }
+
+    private fun preparePopularItemsRecyclerView(){
+        binding.
+
+    }
+
+    private fun observePopularItemsLiveData(){
+        homeMvvm.observeRandomMealLiverdata().observe(viewLifecycleOwner
+        ) { mealList-> }
+    }
+
+    private fun onPopularItemsClick() {
+        popularItemsAdapter.onItemClick = { meal ->
+            val intent = Intent(activity, MainActivity::class.java) //DetailActivity test
+            intent.putExtra(MEAL_ID, meal.idMeal)
+            intent.putExtra(MEAL_NAME, meal.strMeal)
+            intent.putExtra(MEAL_THUMB, meal.strMealThumb)
+            startActivity(intent)
+        }
+    }
+
+    private fun preparePopularItemsRecyclerView() {
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = popularItemsAdapter
+        }
+    }
+
+    private fun observePopulartionItemsLiveData() {
+        homeMvvm.observeRandomMealLiverdata().observe(viewLifecycleOwner,
+        ) { FoodStickerList ->
+            popularItemsAdapter.setMeals(mealsList = FoodStickerList as ArrayList<CategoryMeals>)
+
+        }
     }
 
     private fun onRamdomStickerClick(){
@@ -75,21 +123,24 @@ class HomeFragment2 : Fragment() {
 
     }
 
-    private fun observerRandomSticker(){
-        homeMvvm.observeRandomStickerLivedata().observe(viewLifecycleOwner,object : Observer<Meal>{
-            override fun onChanged(m: Meal) {
-                Glide.with(this@HomeFragment2)
-                    .load(m.strMealThumb)
-                    .into(binding.powerpuffGirlImg)
+private fun observerRandomSticker(){
+    homeMvvm.observeRandomStickerLivedata().observe(viewLifecycleOwner,
+        {meal ->
+            Glide.with(this@HomeFragment)
+                .load(meal!!.strMealThumb)
+                .into(binding.powerpuffGirlImg)
 
 
 //                this@HomeFragment2.ramdomSticker = meal
-            }
-
-        })
+            this.ramdomSticker = meal
 
 
-    }
+
+    })
+
+
+}
+
 
 }
 
