@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Home" android:icon="@drawable/baseline_home_24"
-        android:id="@+id/homeFragment"/>
-    <item android:title="Favorite" android:icon="@drawable/baseline_favorite_border_24"
-        android:id="@+id/favoriteFragment"/>
-    <item android:title="Category" android:icon="@drawable/baseline_category_24"
-        android:id="@+id/categoryFragment"/>
 
+    <item android:title="Home"
+        android:icon="@drawable/ic_home"
+        android:id="@+id/menu_homeFragment"
+        />
 
+    <item android:title="Favorite"
+        android:icon="@drawable/ic_favorite"
+        android:id="@+id/menu_favoriteFragment"
+        />
+
+    <item android:title="Category"
+        android:icon="@drawable/ic_category"
+        android:id="@+id/menu_categoryFragment"
+        />
 </menu>
